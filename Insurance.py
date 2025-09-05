@@ -35,19 +35,41 @@ def main():
     
     with col1:
         
-        age=st.text_input('Enter you are Age')
-    with col2:
-        sex=st.text_input('If you are Male Please Enter "0" OtherWise "1"')
-    
+        age=st.text_input('Enter Age')
     with col1:
+        sex=st.radio("select Gender :",(" Male","Female"))
+        if sex=="Male":
+            sex1=0
+        else:
+            sex1=1
+        #sex=st.text_input('If you are Male Please Enter "0" OtherWise "1"')
+    
+    with col2:
          
-         bmi=st.text_input('Enter the BMI Value')
+         bmi=st.text_input('Enter BMI (Body Mass Index) Value')
     with col2:
         children=st.text_input('Number of Childrens')
     with col1:
-        smoker=st.text_input('If you are Smoker Please Enter "0" Otherwise "1"')
+        smoker=st.radio("Select :",("Smoker","Non-Smoker"))
+        if smoker=="Smoker":
+            smoker1=0
+        else:
+            smoker1=1
+        #smoker=st.text_input('If you are Smoker Please Enter "0" Otherwise "1"')
     with col1:
-        region=st.text_input('If you are Southwest(0),Southeast(1),Northwest(2),Northeast(3) ')
+        region=st.radio("select region :",("Southwest 0","Southeast 1","Northwest 2","Norththwest 4"))
+        if region=="Southwest 0":
+            result=0 
+        elif region=="Southeast 1":
+            result=1 
+        elif region=="Northwest 2":
+            result=2 
+        else:
+            result=3 
+            
+            
+            
+       # region=st.text_input('If you are Southwest(0),Southeast(1),Northwest(2),Northeast(3) ')
    
  
     
@@ -55,8 +77,8 @@ def main():
     diagnosis=''
     
     # create the button for prediction
-    if st.button('Medical Insurance Cost Result'):
-        diagnosis=prediction_function([age,sex,bmi,children,smoker,region])
+    if st.button('Medical Insurance Cost(Dollars)'):
+        diagnosis=prediction_function([age,sex1,bmi,children,smoker1,result])
     st.success(diagnosis)
     
 if __name__=='__main__':
